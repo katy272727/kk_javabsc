@@ -1,4 +1,4 @@
-package hutraining360.javabsc.product;
+package hu.mak.inheritanceMethods;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -7,16 +7,6 @@ public class Product {
     private String name;
     private BigDecimal unitWeight;
     private int numberOfDecimals;
-
-    public Product(String name, BigDecimal unitWeight) {
-        this(name,unitWeight,2);
-    }
-
-    public Product(String name, BigDecimal unitWeight, int numberOfDecimals) {
-        this.name = name;
-        this.unitWeight = unitWeight;
-        this.numberOfDecimals = numberOfDecimals;
-    }
 
     public String getName() {
         return name;
@@ -30,10 +20,19 @@ public class Product {
         return numberOfDecimals;
     }
 
-    public BigDecimal totalWeight(int pieces){
-
-        BigDecimal result = BigDecimal.valueOf(pieces).multiply(unitWeight).setScale(numberOfDecimals, RoundingMode.HALF_UP);
-
-        return result;
+    public Product(String name, BigDecimal unitWeight, int numberOfDecimals) {
+        this.name = name;
+        this.unitWeight = unitWeight;
+        this.numberOfDecimals = numberOfDecimals;
     }
+
+    public Product(String name, BigDecimal unitWeight) {
+        this(name, unitWeight, 2);
+    }
+
+    public BigDecimal totalWeight(int pieces){
+        return unitWeight.multiply(new BigDecimal(pieces)).setScale(numberOfDecimals, RoundingMode.HALF_UP);
+    }
+
+
 }
