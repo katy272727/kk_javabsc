@@ -1,34 +1,36 @@
-package hu.training360.javase.demos;
+package hu.mak.methodstructure;
 
 import java.util.List;
 
 public class Pendrives {
-
-    public Pendrive best(List<Pendrive> pendrives) {
-        Pendrive min = pendrives.get(0);
-        for (int j = 0; j < pendrives.size(); j++) {
-            if (min.comparePricePerCapacity(pendrives.get(j)) == 1) {
-                min = pendrives.get(j);
+    public Pendrive best(List<Pendrive> pendriveList){
+        Pendrive best = pendriveList.get(0);
+        for (Pendrive item:pendriveList
+             ) {
+            if(item.comparePricePerCapacity(best) == -1){
+                best = item;
             }
         }
-        return min;
+        return best;
     }
 
-    public Pendrive cheapest(List<Pendrive> pendrives) {
-        Pendrive min = pendrives.get(0);
-        for (int j = 0; j < pendrives.size(); j++) {
-            if (pendrives.get(j).cheaperThan(min)) {
-                min = pendrives.get(j);
+    public Pendrive cheapest(List<Pendrive> pendriveList){
+        Pendrive cheapest = pendriveList.get(0);
+        for (Pendrive item:pendriveList
+             ) {
+            if(item.cheaperThan(cheapest)){
+                cheapest = item;
             }
         }
-        return min;
+        return cheapest;
     }
 
-    public void risePriceWhereCapacity(List<Pendrive> pendrives, int percent, int capacity) {
-        for (Pendrive p : pendrives) {
-            if (p.getCapacity() == capacity) {
-                p.raisePrice(percent);
+    public void risePriceWhereCapacity(List<Pendrive> pendriveList, int percent, int capacity){
+        for (int i = 0; i < pendriveList.size(); i++){
+            if(pendriveList.get(i).getCapacity() == capacity){
+                pendriveList.get(i).risePrice(percent);
             }
         }
     }
+
 }

@@ -1,26 +1,54 @@
-package hu.training360.javase.demos;
+package hu.mak.methodstructure;
 
 public class Pendrive {
     private String name;
-    private int capacity;
-    private int price;
+    private double capacity;
+    private double price;
+
+    public Pendrive(String name, double capacity, double price) {
+        this.name = name;
+        this.capacity = capacity;
+        this.price = price;
+    }
+
+    public void risePrice(int percent){
+        this.price += price * percent/100;
+    }
+
+    public int comparePricePerCapacity(Pendrive otherPendrive){
+        double ppThisPendrive = this.price / this.capacity;
+        double ppOtherPendrive = otherPendrive.price / otherPendrive.capacity;
+        if(ppThisPendrive > ppOtherPendrive){
+            return 1;
+        }
+        else if(ppOtherPendrive > ppThisPendrive){
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    boolean cheaperThan(Pendrive otherPendrive){
+        if (this.price < otherPendrive.price){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
     public String getName() {
         return name;
     }
 
-    public int getCapacity() {
+    public double getCapacity() {
         return capacity;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
-    }
-
-    public Pendrive(String name, int capacity, int price) {
-        this.name = name;
-        this.capacity = capacity;
-        this.price = price;
     }
 
     @Override
@@ -31,30 +59,4 @@ public class Pendrive {
                 ", price=" + price +
                 '}';
     }
-
-    public void raisePrice(int percent){
-        this.price += this.price*percent/100;
-    }
-
-    public int comparePricePerCapacity(Pendrive other) {
-        double ppc = pricePerCapacity();
-        double otherPpc = other.pricePerCapacity();
-        if (ppc > otherPpc) {
-            return 1;
-        }
-        if (ppc < otherPpc) {
-            return -1;
-        }
-        return  0;
-    }
-
-    private double pricePerCapacity() {
-        return (double)price/capacity;
-    }
-
-    public boolean cheaperThan(Pendrive other) {
-        return this.price < other.price;
-    }
-
-
 }
